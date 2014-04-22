@@ -16,7 +16,7 @@ class KidneyTest extends Specification {
         Body.human().cardioVascularSystem.bloodPressure.diastolic = diastolic
 
         expect: "efferent arteriole to constrict when MAP is low in order to increase pressure in glomerulus"
-        assert Body.human().kidney.nephrons.getVessels(AfferentArteriole).constricted
+        assert Body.human().kidney.nephrons.getVessel(AfferentArteriole).constricted
 
         where:
         systolic | diastolic
