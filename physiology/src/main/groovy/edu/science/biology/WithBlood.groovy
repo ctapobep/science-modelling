@@ -6,6 +6,6 @@ class WithBlood extends BioObject {
     List<BloodVessel> bloodVessels = []
 
     public <T extends BloodVessel> T getVessels(Class<T> type) {
-        return bloodVessels.find { it.class = type }
+        return (T) bloodVessels.find { it.class == type }
     }
 }

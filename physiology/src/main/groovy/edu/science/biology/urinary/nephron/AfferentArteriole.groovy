@@ -7,4 +7,5 @@ class AfferentArteriole extends Arteriole {
         name = "Kidney Afferent Arteriole"
         description = "Delivers blood to Nephron Glomerulus"
     }
+    JuxtaGlomerulalCell juxtaGlomerulalCells
 }
