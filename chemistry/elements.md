@@ -23,4 +23,8 @@ Nomencature:
 - O=C=O
 
 ###Hydrogen Bonds
-Because H is not-a-very-electronegative guy, electrons don't usually hang up with them too much and molecules usually are pretty polar. In this case H side forms a slightly positive end. Example is: surface pressure in whater (several H2O molecules are connected with Hydrogen bonds).
+Because H is not-a-very-electronegative guy, electrons don't usually hang up with them too much and molecules usually are pretty polar. In this case H side forms a slightly positive end. Examples:
+- surface tension in whater (several H2O molecules are connected with Hydrogen bonds). 
+- Hold DNA molecules together. This is important since DNA needs to unzip often.
+- Helps enzymes bind substrate molecules
+- Helps antibodies bind antigen
