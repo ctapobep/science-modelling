@@ -1,6 +1,6 @@
 ## Periodic Table
 
-Column number says how many electrons there are at the outer shell.
+Column number says how many electrons there are at the outer shell. In this case columns that start too low vertically are not considered.
 
 The most electronegative elements are at the top righ.
 
