@@ -1,4 +1,4 @@
-package edu.science.biology
+package edu.science.biology.pharmacology
 
 class AntiInflammatoryDrugs {
   def nonNarcoticNsaids = [
@@ -14,6 +14,7 @@ class AntiInflammatoryDrugs {
     ParaAminoPhenols: [
       description               : 'Not much difference in pain relief comparing to Salicylate Family, but side effects are different',
       ["paracetomol", "tylenol"]: [
+        aka: "acetaminophen or APAP",
         effect       : "Pain reliever, but doesn't reduce blood clotting or inflammation",
         adverseEffect: "Is bad for liver"]],
     Excedrin        : [
