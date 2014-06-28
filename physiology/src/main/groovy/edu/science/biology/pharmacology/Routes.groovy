@@ -76,7 +76,8 @@ class Routes {
       aka          : 'put right where you want',
       onsetOfAction: 'minutes',
       advanteges   : ['local actions'],
-      examples     : ['dermatologic', 'opthalmic', 'nasal', 'dental & throat', 'vaginal']
+      examples     : [['dermatologic', 'opthalmic', 'nasal', 'dental & throat', 'vaginal'],
+                      ['antibiotics', 'antiseptics', "${AntiInflammatoryDrugs}", 'anesthetic']]
     ]
   }
 }
