@@ -4,13 +4,20 @@ import edu.science.biology.cardiovascular.CardioVascularSystem
 import edu.science.biology.urinary.Kidney
 
 class Body {
-  static class DigestiveSystem {
-    static class Stomach{}
+  static class Digestive {
+    static class Stomach {}
+
     static class Intestine {
-      static class SmallIntestine{
+      static class SmallIntestine {
         static def eleum
       }
     }
+
+    static class Liver {}
+  }
+
+  static class Urinary {
+    static class Kidney {}
   }
   CardioVascularSystem cardioVascularSystem
   Kidney kidney
