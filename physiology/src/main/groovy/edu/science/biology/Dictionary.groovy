@@ -77,6 +77,8 @@ enum Dictionary {
             cervico : ['neck'],
             axilary : ['arm pit']
     ]
-
+  def drugs = [
+    ine: ['the drug is usually a base']
+  ]
 }
 
