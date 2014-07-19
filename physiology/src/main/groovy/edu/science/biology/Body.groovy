@@ -8,6 +8,7 @@ import static edu.science.biology.Channel.CoTransporter.Na_Amino
 import static edu.science.biology.Channel.CoTransporter.Na_Glucose
 import static edu.science.chemistry.Molecule.Molecules.*
 
+@SuppressWarnings("GroovyUnusedDeclaration")
 class Body {
   static class Digestive {
     static class Stomach {}
@@ -50,7 +51,7 @@ class Body {
             H2O : "can move across (and it does a lot)",
             ions: "cannot move across the membrane",
             ADH : "which is secreted by Pituitary can increase the number of aquaporin channels",
-            RAAS: "${maculaDensa} activates ${afferentArteriole.juxtaGlomerulalCells} which secrete Renin because of which " +
+            RAAS: "${maculaDensa} activates ${JuxtaGlomerulalCell}s which secrete Renin because of which " +
               "Angitensin is generated and by ACE is converted into ANGI2. ANGI2 asks P. Pituitary to secrete " +
               "ADH which adds aquaporin channels in tubules. ANGI2 also asks aldosterone to be secreted which makes Na to move into the blood from ducts"],
           thickAscendingLoop: [
