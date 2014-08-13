@@ -1,6 +1,10 @@
 package edu.science.biology
 
 class Proteins {
+  class Conventions {
+    def kinase = 'means that it (ferment) adds a phosphate to a substance'
+    def mutase = 'changes structure but does not change atoms'
+  }
   /** Participates in apoptosis. There are several entities of each family which is needed for redundancy or.. they
    * have a bit different role. */
   class Bcl2Superfamily {
