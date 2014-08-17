@@ -64,5 +64,14 @@ class Legal {
         Forms(description, content) {}
       }
     }
+    /** If someone suits you, here is what for.. */
+    class CivilActions {
+      def misfeasanceTort = 'the action was improperly performed, but was within the practitioner legally defined ' +
+        'scope of practice'
+      def nonFeasanceTort = 'the action is in scope of the practitioner legally defined functions was indicated by ' +
+        'situation but was not performed by the practitioner'
+      def malfeasanceTort = 'the action was improperly performed and was not within the legally defined scope of the' +
+        'practitioner functions'
+    }
   }
 }
