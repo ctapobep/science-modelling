@@ -56,10 +56,15 @@ class Legal {
         def features = ['no refill limitations']
         def examples = ['Robitussin-AC(R)', 'Lomotil(R)']
       }
-
+      /** http://www.youtube.com/watch?v=4D-gpHluUY8&index=3&list=PLekhl8ZQS2PahYNzzQow72dLyLAXj2dDJ */
       enum Forms {
         RegularForm('DEA number is still required', []),
         TamperResistant('Cannot be photo-copied', ['name of drug & dosage', 'number of pills', 'refill is possible?'])
+        def heading = ['doctor info (name, address, phone)', 'patient info (name, address, phone)', 'date of prescription']
+        def body = ['aka Rx (recipe)', 'name of drug & dosage', 'dispense: number of pills',
+                    """SIG (signa): directions to the patient: "1 tab q(every)4-6h prn" which
+                      translates to: 1 tab every 4-6 hours prorenada (as needed). This is printed on the container by pharmaciest"""]
+        def closing = ['sign or prescriber (name or DEA number)', 'whether a generic can substitute the brand']
 
         Forms(description, content) {}
       }
