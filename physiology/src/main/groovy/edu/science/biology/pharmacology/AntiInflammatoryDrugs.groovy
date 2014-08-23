@@ -27,7 +27,8 @@ class AntiInflammatoryDrugs {
                                          "doesn't reduce blood clotting"],
                          adventages   : ["not that allergic as aspirin"],
                          disadvanteges: "less anti-inflammatory effect than with aspirin",
-                         adverseEffect: ["Is bad for liver", "can be a problem for diabetics"]]
+                         adverseEffect: ["Is bad for liver", "can be a problem for diabetics"],
+                         excretion    : PharmacoKinetics.Excretion.BiliarySecretion]
     }
 
     class Excedrin {
@@ -77,6 +78,7 @@ class AntiInflammatoryDrugs {
       class Codeine {
         def aka = 'Methylmorphine'
         def description = '1/6 as potent as Morphine, it causes everything less than morphine (except constipation)'
+        def secretion = PharmacoKinetics.Excretion.BiliarySecretion
       }
 
       class Heroin {
