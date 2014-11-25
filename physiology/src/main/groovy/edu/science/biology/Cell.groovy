@@ -30,10 +30,16 @@ class Cell {
       def step8 = [enzyme: 'Enolase', product: ['Phosphoenolpyruvate', 'H20']]
       def step9 = [enzyme: 'Pyruvate Kinase', reactant: ['ADP', 'Prev step'], product: ['ATP', '2x Pyruvate']]
     }
-
-    class PyruvateOxidativeDecraboxylation {
+    /**
+     * Happens only if not enough O is available and it's not possible to break Pyruvate further in aerobic part
+     * of respiration.
+     */
+    class Fermentation {
+      def info = 'http://www.youtube.com/watch?v=7WQrDf9k1uM'
+    }
+    class PyruvateOxidativeDecarboxylation {
       def info = 'http://www.youtube.com/watch?v=8XpWLbCaZZ8&index=2&list=PLmgk09Oa38oo_p7DmMeeiGB85v4MHH6gZ'
-      def location = 'mitachondrial matrix'
+      def location = 'Mitachondrial Matrix'
       def reactant = ['Pyruvate', 'CoA', 'NAD']
       def product = ['Acetyl CoA', 'NADH2']
       def enzyme = 'Pyruvate Dehydrogenase Complex'
