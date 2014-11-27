@@ -37,6 +37,7 @@ class Cell {
     class Fermentation {
       def info = 'http://www.youtube.com/watch?v=7WQrDf9k1uM'
     }
+    /** AKA Transition Phase */
     class PyruvateOxidativeDecarboxylation {
       def info = 'http://www.youtube.com/watch?v=8XpWLbCaZZ8&index=2&list=PLmgk09Oa38oo_p7DmMeeiGB85v4MHH6gZ'
       def location = 'Mitachondrial Matrix'

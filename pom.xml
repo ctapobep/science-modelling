@@ -10,6 +10,7 @@
   <modules>
     <module>chemistry</module>
     <module>physiology</module>
+    <module>statistics</module>
   </modules>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
