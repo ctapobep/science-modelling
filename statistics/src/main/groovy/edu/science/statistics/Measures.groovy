@@ -41,6 +41,8 @@ class Measures {
     int getRespondedSize() { sample.findAll { true }.size() }
 
     int getNotRespondedSize() { sample.findAll { false }.size() }
+
+    double getEntropy() { -(proportion * log(proportion) / log(2)) }
   }
 
   class TimeToEventData {
@@ -62,9 +64,10 @@ class Measures {
    * {@code 2} should be adjusted for small size (t-table must be used) or/and for required confidence (e.g. !=95%).
    */
   def meanDifferenceCi = [
-    (sample1.mean - sample2.mean) - 2 * sqrt(pow(sample1.standardError, 2) + pow(sample2.standardError, 2)),
-    (sample1.mean - sample2.mean) + 2 * sqrt(pow(sample1.standardError, 2) + pow(sample2.standardError, 2))
+    (sample1.mean - sample2.mean) - 2 * sqrt(sample1.variance + sample2.variance),
+    (sample1.mean - sample2.mean) + 2 * sqrt(sample1.variance + sample2.variance)
   ]
+  //def pValue = [(sample1.mean - sample2.mean) / sample1.standardDeviation]//!!
 
   def sample3 = new BinomialData()
   def sample4 = new BinomialData()
@@ -81,6 +84,7 @@ class Measures {
         sqrt(1 / sample3.respondedSize - 1 / sample3.size + 1 / sample4.respondedSize - 1 / sample4.size)
     )
   ]
+  def rrPValue = []
 
   /** Confidence Interval for Odds Ratio. Note that with small sizes 2 must be replaced with T-score. */
   def oddsRatioCi = [
