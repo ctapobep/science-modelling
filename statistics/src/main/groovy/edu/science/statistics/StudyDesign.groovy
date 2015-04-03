@@ -31,7 +31,11 @@ class StudyDesign {
        * Risk Ratio
        */
       double relativeRisk
+      /** Performance measured before the treatment started and then afterwards. */
+      class PrePostStudy{}
     }
+    /** All participants are exposed to all the exposures but in different order. */
+    class CrossOver{}
   }
 
 
