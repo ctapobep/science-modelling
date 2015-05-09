@@ -10,6 +10,26 @@ import static edu.science.chemistry.Molecule.Molecules.*
 
 @SuppressWarnings("GroovyUnusedDeclaration")
 class Body {
+  static class Fluid {
+    def partOfTotalBodyMass = 0.6
+    /** More K+ */
+    class IntraCellularFluid {
+      def partOfTotalBodyWater = 2 / 3
+    }
+    /** More Na+ */
+    class ExtraCellularFluid {
+      def partOfTotalBodyWater = 1 / 3
+      class InterstitialFluid {
+        def partOfEcf = 3 / 4
+      }
+
+      class IntraVascularFluid {
+        def partOfEcf = 1 / 4
+      }
+
+      class CerebroSpinalFluid {}
+    }
+  }
   static class Digestive {
     static class Stomach {}
 
