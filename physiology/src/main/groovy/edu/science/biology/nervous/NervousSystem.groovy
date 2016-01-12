@@ -9,7 +9,21 @@ import static edu.science.biology.Receptors.Adrenergic.*
 import static edu.science.biology.Receptors.Muscarinic
 
 class NervousSystem {
-  class Sympathetic {
+  /**
+   * <ul>
+   *   <li>Increased Heart rate (tachocardia)</li>
+   *   <li>Overall vaso-constriction -> Increased blood preassure</li>
+   *   <li>Vaso-dilation in coronary arteries and skeletal muscles</li>
+   *   <li>Increased intra-ocular pressure</li>
+   *   <li>Glycogenesis - blood sugar goes up</li>
+   *   <li>Pupils dilation</li>
+   *   <li>Lipolysis - breakdown of lipids</li>
+   *   <li>Decrease of mucus production (saliva, lungs, nose) e.g. before operation for intubation</li>
+   *   <li>Decrease of urinary and digestive tracts activity</li>
+   *   <li>Orgasm</li>
+   * </ul>
+   */
+  static class Sympathetic {
     def neurotransmitters = [
         norepinepherine: [
             [
