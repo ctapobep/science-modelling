@@ -17,6 +17,24 @@ class Dna {
     return ((double) (cCount + gCount)) / ((double) sequence.length())
   }
 
+  /**
+   * Why would we want to calculate GC content? Why does GC content even matter? At the prokaryotic level, GC
+   * content correlates coding-sequence length, correlates with certain secondary RNA structures, and there is also
+   * a noted bias towards low GC content in stop codons (TAG, TAA, and TGA). These are just to name a few situations
+   * where rich GC regions and GC poor regions correlate with functional significance. Long coding regions in
+   * vertebrates and prokaryotes are significantly correlated with GC content; long coding regions tend to be
+   * GC-rich where as short coding regions tend to be GC poor. Since codons are biased towards being AT rich, mutations
+   * in AT rich regions can likely lead to the generation of stop codons. Whereas in GC regions, many such mutations
+   * might be required to spontaneously lead to stop codons. Therefore, conserved regions across organisms are likely
+   * GC rich.
+   *
+   * Oliver, JL and Marin, A. A relationshiip between GC content and coding-sequence length. J Mol Evol 1996 Sep;43(3)216-23
+   *
+   * Andersson, SGE and Kurland CG. Genomic evolution drives the evolution of the translation system. Biochem. Cell Biol 73:775-787 (1995)
+   *
+   * D'Onofrio, Giuseppe and Benardy, Giorgio. A Universal Compositional correlation among Codon Positions. GENE, 110(1992)81-88
+   * @return
+   */
   double gcContent() { gcRatio() * 100 }
 
   static Dna fromString(String seq) {
