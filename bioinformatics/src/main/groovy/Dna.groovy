@@ -33,12 +33,25 @@ class Dna {
    * Andersson, SGE and Kurland CG. Genomic evolution drives the evolution of the translation system. Biochem. Cell Biol 73:775-787 (1995)
    *
    * D'Onofrio, Giuseppe and Benardy, Giorgio. A Universal Compositional correlation among Codon Positions. GENE, 110(1992)81-88
-   * @return
+   * @return ratio of G and C nucleotides * 100
    */
   double gcContent() { gcRatio() * 100 }
 
+  int hammingDistance(Dna dna) {
+    int distance = 0
+    for(int i = 0; i < sequence.length(); i++) {
+      if(sequence.charAt(i) != dna.sequence.charAt(i)) {
+        distance++;
+      }
+    }
+    return distance
+  }
+
   static Dna fromString(String seq) {
     return new Dna(null, seq)
+  }
+  static Dna dna(String seq) {
+    return fromString(seq)
   }
   static List<Dna> fromStrings(String ... seq) {
     return seq.collect{String it -> fromString(it)}
