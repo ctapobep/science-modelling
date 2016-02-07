@@ -12,6 +12,7 @@
     <module>physiology</module>
     <module>statistics</module>
     <module>bioinformatics</module>
+    <module>randomize-test-data</module>
   </modules>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -59,12 +60,17 @@
       <dependency>
         <groupId>edu.science</groupId>
         <artifactId>chemistry</artifactId>
-        <version>${version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>edu.science</groupId>
         <artifactId>physiology</artifactId>
-        <version>${version}</version>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>edu.science</groupId>
+        <artifactId>randomize-test-data</artifactId>
+        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
