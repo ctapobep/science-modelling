@@ -47,6 +47,10 @@ class Dna {
     return distance
   }
 
+  String toRnaString() {
+    return sequence.replaceAll('T', 'U')
+  }
+
   static Dna fromString(String seq) {
     return new Dna(null, seq)
   }
