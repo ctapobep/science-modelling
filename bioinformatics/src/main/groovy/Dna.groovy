@@ -51,6 +51,19 @@ class Dna {
     return sequence.replaceAll('T', 'U')
   }
 
+  List<Integer> positionsOf(String subSequence) {
+    int subLength = subSequence.length()
+    List<Integer> positions = new ArrayList<>();
+    for (int i = 0; i < sequence.length() - subLength + 1; i++) {
+      if (sequence.charAt(i) == subSequence.charAt(0)) {
+        if (sequence[i..(i + subLength -1)] == subSequence) {
+          positions.add(i + 1)
+        }
+      }
+    }
+    return positions
+  }
+
   static Dna fromString(String seq) {
     return new Dna(null, seq)
   }

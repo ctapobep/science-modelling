@@ -6,9 +6,4 @@ class PermutationsTest {
     println Permutations.permutations('abcd').size()
     print Permutations.permutations('abcd').join('\n')
   }
-
-  @Test void testPermutationsOnGraph() {
-    assert 24*5*6 == PermutationsOnTree.permutations('12345')
-
-  }
 }
