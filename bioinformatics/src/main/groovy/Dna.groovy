@@ -46,9 +46,16 @@ class Dna {
     }
     return distance
   }
+  int getLength() {
+    return sequence.length()
+  }
 
   String toRnaString() {
     return sequence.replaceAll('T', 'U')
+  }
+
+  char getAt(int symbolPosition) {
+    return sequence.charAt(symbolPosition)
   }
 
   List<Integer> positionsOf(String subSequence) {
