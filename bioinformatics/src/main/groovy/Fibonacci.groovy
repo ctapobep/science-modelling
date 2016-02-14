@@ -23,7 +23,7 @@ class Fibonacci {
     }
     BigInteger grownRabbits = 0
     BigInteger overallRabbits = 1//this is the 1st iteration, so the loop starts with 1
-    Queue<Long> rabbitsBornDuringPrevMonths = new LinkedList<>([1L])
+    Queue<BigInteger> rabbitsBornDuringPrevMonths = new LinkedList<>([1G])
     for (int i = 1; i < recurrences; i++) {
       if(rabbitsBornDuringPrevMonths.size() >= nOfMonthsRabbitsLive) {
         BigInteger nOfRabbitsMustDie = rabbitsBornDuringPrevMonths.poll()
@@ -32,7 +32,7 @@ class Fibonacci {
       BigInteger prevOverallRabbits = overallRabbits
       overallRabbits += grownRabbits
       grownRabbits = prevOverallRabbits
-      rabbitsBornDuringPrevMonths.add(overallRabbits - grownRabbits)//newborn rabbits
+      rabbitsBornDuringPrevMonths.add(overallRabbits.subtract(grownRabbits))//newborn rabbits
     }
     return overallRabbits
   }

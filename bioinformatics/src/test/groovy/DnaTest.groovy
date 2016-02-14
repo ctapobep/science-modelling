@@ -34,6 +34,19 @@ class DnaTest {
             622, 650, 678, 708, 718, 766] == dna(BIG_MOTIF_SEQ.sequence).positionsOf(BIG_MOTIF_SEQ.subsequence)
   }
 
+  @Test void 'longest common sequence'() {
+    assert '' == Dna.longestCommonSequence([])
+    assert '' == Dna.longestCommonSequence([dna('AC'), dna('GT')])
+    assert 'AC' == Dna.longestCommonSequence([dna('AC')])
+    assert 'A' == Dna.longestCommonSequence([dna('AC'), dna('GA')])
+    assert 'AC' == Dna.longestCommonSequence([dna('AC'), dna('GAC')])
+    assert 'AC' == Dna.longestCommonSequence([dna('AC'), dna('GACT')])
+    assert 'AC' == Dna.longestCommonSequence([dna('ACA'), dna('GACT')])
+    assert 'GACT' == Dna.longestCommonSequence([dna('GACT'), dna('GACT')])
+    assert LONGEST_COMMON_SEQ1.longestCommonSeq == Dna.longestCommonSequence(Dna.parseFasta(LONGEST_COMMON_SEQ1.fasta))
+    assert LONGEST_COMMON_SEQ2.longestCommonSeq == Dna.longestCommonSequence(Dna.parseFasta(LONGEST_COMMON_SEQ2.fasta))
+  }
+
   @Test void 'fasta with one DNA sequence must return one DNA'() {
     String sequence = '>Rosalind_6404\n' +
         'CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCC\n' +
@@ -228,4 +241,18 @@ ACGAGGGGCGCTTACTCAATCCTCGCTG
           'TTCCCCCCGAAATTCCCCTGATTCCCCATTCCCCGTTGCCATTCCCCTATTCCCCATCGATTCCCCTATTCCCCGGCGATTCCCCATTATTCCCCATATTCCCCGA' +
           'TTCCCCCATTCCCCCCATCTCTATTCCCCTATTCCCCATTCCCCTTGCCTAGATTCAGATTCCCCGGTAGAATTCCCCAATTCCCC',
        subsequence: 'ATTCCCCAT']
+  final static Map<String, String> LONGEST_COMMON_SEQ1 = [
+      fasta           : '>Rosalind_1\n' +
+          'GATTACA\n' +
+          '>Rosalind_2\n' +
+          'TAGACCA\n' +
+          '>Rosalind_3\n' +
+          'ATACA',
+      longestCommonSeq: 'TA'
+  ]
+  final static Map<String, String> LONGEST_COMMON_SEQ2 = [
+      fasta           : DnaTest.class.getResource('/longest_common_seq_big.fasta').text,
+      longestCommonSeq: 'CTTAGTTAATTACACCCGCAATCTTCCGATTATCCGTACGGGTGTATCGGAGAGCTGGAATGTGACCCTGTGAGTCGCGCCTCACGTAAA' +
+          'CGCATGACTGTCGGGTACAGCATCTGCGCCCCACCTCTACAGTAAATGTGGAGATTCGGTAGCTGCAATGCCAAATAGGAAC'
+  ]
 }

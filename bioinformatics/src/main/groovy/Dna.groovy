@@ -71,6 +71,27 @@ class Dna {
     return positions
   }
 
+  static String longestCommonSequence(List<Dna> dnas) {
+    if (!dnas) return ''
+    Dna longestDna = Collections.max(dnas, new BySequenceLengthComparator())
+    String longestSeq = ''
+    for (int startOfSeq = 0; startOfSeq < longestDna.length; startOfSeq++) {
+      String commonSeq = ''
+      //we don't need to check sequences shorter than existing longest seq, so starting with the same length
+      for (int endOfSeq = startOfSeq + longestSeq.length(); endOfSeq < longestDna.length; endOfSeq++) {
+        commonSeq = commonSeq + longestDna[endOfSeq]
+        Map<Dna, List<Integer>> positions = dnas.collectEntries { Dna it -> [(it): it.positionsOf(commonSeq)] }
+        if (positions.values().any { List it -> it.isEmpty() }) {
+          if (longestSeq.length() < commonSeq.length()) longestSeq = commonSeq.substring(0, commonSeq.length() - 1)
+          break
+        } else if (endOfSeq == longestDna.length - 1) { //end of story
+          if (longestSeq.length() < commonSeq.length()) longestSeq = commonSeq
+        }
+      }
+    }
+    return longestSeq
+  }
+
   static Dna fromString(String seq) {
     return new Dna(null, seq)
   }
@@ -98,12 +119,6 @@ class Dna {
     return result
   }
 
-  static class ByGcRatioDescComparator implements Comparator<Dna> {
-    @Override int compare(Dna o1, Dna o2) {
-      return Double.compare(o2.gcRatio(), o1.gcRatio())
-    }
-  }
-
   String toString() {
     return "[$id, $sequence]"
   }
@@ -121,5 +136,17 @@ class Dna {
 
   int hashCode() {
     return (sequence != null ? sequence.hashCode() : 0)
+  }
+
+  static class ByGcRatioDescComparator implements Comparator<Dna> {
+    @Override int compare(Dna o1, Dna o2) {
+      return Double.compare(o2.gcRatio(), o1.gcRatio())
+    }
+  }
+
+  static class BySequenceLengthComparator implements Comparator<Dna> {
+    @Override int compare(Dna o1, Dna o2) {
+      return Integer.compare(o1.length, o2.length)
+    }
   }
 }
