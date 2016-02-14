@@ -1,6 +1,7 @@
 import groovy.transform.CompileStatic
 import org.junit.Test
 
+import static HeredityOfFactorProbability.offspringWithDominantPhenotype
 import static HeredityOfFactorProbability.probabilityOfDominantPhenotype
 
 @CompileStatic
@@ -23,5 +24,16 @@ class HeredityOfFactorProbabilityTest {
     // this time rounding to 0.1 since the expected result is calculated incorrectly -
     // it's not as complex (and correct) as the production algorithm
     assert (10 / 60D + (20 + 30) / 60D * 0.5D).round(1) == probabilityOfDominantPhenotype(10, 20, 30).round(1)
+  }
+
+  @Test void 'n of dominant offspring'() {
+    assert 2D == offspringWithDominantPhenotype(1, 0, 0, 0, 0, 0)
+    assert 4D == offspringWithDominantPhenotype(1, 1, 0, 0, 0, 0)
+    assert 6D == offspringWithDominantPhenotype(1, 1, 1, 0, 0, 0)
+    assert 7.5D == offspringWithDominantPhenotype(1, 1, 1, 1, 0, 0)
+    assert 8.5D == offspringWithDominantPhenotype(1, 1, 1, 1, 1, 0)
+    assert 8.5D == offspringWithDominantPhenotype(1, 1, 1, 1, 1, 1)
+    assert 3.5D == offspringWithDominantPhenotype(1, 0, 0, 1, 0, 1)
+    assert 147576D == offspringWithDominantPhenotype(16401, 17131, 17925, 18646, 16693, 19601)
   }
 }
