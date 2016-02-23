@@ -1,4 +1,4 @@
-import groovy.transform.CompileStatic
+import static Math2.combinations
 
 class HeredityOfFactorProbability {
   static final double HETEROZYGOUS_RECESSIVE_PROBAB = 0.25, HETERO_AND_HOMORECESSIVE_PROBAB_OF_RECESSIVE_OFFSPRING = 0.5
@@ -37,4 +37,24 @@ class HeredityOfFactorProbability {
     }
     return nOfDominantOffspring
   }
+
+  static double probabilityOfIndependentAllelesInKthGeneration(int generation, int atLeastNOfAa_BbOrganisms) {
+    if(generation == 0 && atLeastNOfAa_BbOrganisms == 1) return 1//first organism is AaBb according to the task
+    BigDecimal Aa_Bb_PROBABILITY = 1D / 4
+    BigDecimal NOT_Aa_Bb_PROBABILITY = 1 - Aa_Bb_PROBABILITY
+
+    int nOfOrganismsInGeneration = 2.power(generation)
+
+    BigDecimal pOfLessThanNAaBbOrganisms = 0
+    for(int i = 0; i < atLeastNOfAa_BbOrganisms; i++) {
+      pOfLessThanNAaBbOrganisms += combinations(nOfOrganismsInGeneration, i) *
+              Aa_Bb_PROBABILITY.power(i) * NOT_Aa_Bb_PROBABILITY.power(nOfOrganismsInGeneration - i)
+    }
+
+    assert pOfLessThanNAaBbOrganisms <= 1.0
+    assert pOfLessThanNAaBbOrganisms >= 0
+    return 1 - pOfLessThanNAaBbOrganisms
+  }
+
+
 }
