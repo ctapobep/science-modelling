@@ -89,6 +89,14 @@ class Dna {
     return positions
   }
 
+  Dna remove(List<Dna> parts) {
+    String resultSeq = this.sequence
+    for(Dna part: parts) {
+      resultSeq -= part.sequence
+    }
+    return new Dna(id, resultSeq)
+  }
+
   List<String> possibleProteinsThatCanStartAnywhere() {
     List<String> result = []
     for (int startCodonPosition : positionsOf('ATG')) {
