@@ -4,6 +4,20 @@ import static Dna.dna
 
 class DnaTest {
 
+  @Test void 'reverse palindromes'() {
+    assert [:] == dna('').reversePalindromes()
+    assert [:] == dna('GC').reversePalindromes()
+    assert [(1): 4] == dna('TGCAA').reversePalindromes()
+    assert [(2): 4] == dna('ATGCA').reversePalindromes()
+    assert [(1): 4] == dna('TGCA').reversePalindromes()
+    assert [(1): 6, (2): 4] == dna('CACGTG').reversePalindromes()
+    assert [(1): 4] == dna('ACGTGT').reversePalindromes()
+    assert [(1): 12, (2): 10, (3): 8, (4): 6, (5): 4] == dna('TTTCCTAGGAAA').reversePalindromes()
+    assert [(4): 6, (5): 4, (6): 6, (7): 4, (17): 4, (18): 4, (20): 6, (21): 4] ==
+        dna('TCAATGCATGCGGGTCTATATGCAT').reversePalindromes()
+    assert PALINDROME1.palindromes == Dna.parseFasta(PALINDROME1.fasta)[0].reversePalindromes()
+  }
+
   @Test void 'remove introns'() {
     assert SPLICING1.resultingProtein == Dna.parseFasta(SPLICING1.originalFasta)[0].
         remove(Dna.parseFasta(SPLICING1.introns)).
@@ -356,5 +370,97 @@ ACGAGGGGCGCTTACTCAATCCTCGCTG
           'TCGAGAGAACATCGCGTATTTC',
       resultingProtein: 'MTGRNTGPVSIYVYCWATADSSVCLSLTLIYDYIAAATNRDIGESLGSLTVVGDSGLKRVLCRENLDFAPPSCVNKKCVRLSAPRHAKVNYL' +
           'TLWAANTSSEHFEIWIIVGACQRLAYQRLTYLVFNSVHIAQSRFGWTLVVLRFLQGCCIPVRDDEIYQTVIFLHCMVLNVSYSAC'
+  ]
+  static final Map PALINDROME1 = [
+      fasta      : '>Rosalind_2584\n' +
+          'GCGCAAGTTCATTGACCGCTTTTTGGTTGTAAAGAGCATAATAAGACCTCCTAAAAACAT\n' +
+          'ATACATACAGCTTACTTGTCCTACTAAGGTACTAAGTCAAGGGACTACATCCGGTCCTTA\n' +
+          'CTCCTTAATTCATAGAAGGTCTTTCCCCTTTTATGCCAAAGATAGTGTTAAGACCAGCCT\n' +
+          'TAACGTTTGTATCAAGGTAGTCTTGTGACGAGGTCTGGCCTGTAACGCTGGCTGCTTCAG\n' +
+          'TTAGCCAAGAAAACCCATGCTAGTGAATAAAAACGCTGTTCACACCGCAGGGAATTTATT\n' +
+          'ACGGCGTTCCAGGAAACTGCGAGTTTCGTCGGAACGTGTCCGATCAAGTACACGGTTATT\n' +
+          'ATGCTGTTGCGTCACTTTGGAGATAACCCATGCCGGGATGGACGACTATCATATGAGTGA\n' +
+          'GCGAGTAGTTGCCCTAGAGAGTCACGTGACATGAACCGACCCTGAACACTTAGATAGGGC\n' +
+          'CCTATGTTAGCATGGCCCAATAATTGGAATGGTATCCGTCCGTCCTCGTTTGACAGTCTC\n' +
+          'GCTTGGCCATGCTTGAAAAAGACGTCAACGAGGGTTCCGAACTCGTACTTCGGGCGTGAG\n' +
+          'CCGATCAAGGGACCTTATCTATAGTGACTAGGCTCTTTCATACGCCGCATACCCGGCCCC\n' +
+          'CGGTGTGACCAGTTTTCTCAAAGATGCATCACAATGGTCGGTGCGCATGGCGAATCTCCA\n' +
+          'AAAGCCCTCAAACTATCGCGATCAAAGCGACGCCAGGATTCGCGATTGATTGAGTAGCAG\n' +
+          'GCTGTGCCAGGACTTTCAAGCATAACTTTACGAGCATTACGTGATCTCACTACCAGCGAG\n' +
+          'CATTAACGGTAATGGTGATCAGAGACGATGACCTCTGCTTGACCTTGTAGTCAGTCAGTG\n' +
+          'ATACAGACACTTCTGGTCACCCTGCAGACAACAAGACAAGTGTCCGAACCCCCGATAT',
+      palindromes: [(1)  : 4,
+                    (59) : 4,
+                    (60) : 4,
+                    (69) : 4,
+                    (89) : 4,
+                    (111): 4,
+                    (125): 4,
+                    (127): 4,
+                    (168): 4,
+                    (180): 4,
+                    (182): 6,
+                    (183): 4,
+                    (217): 4,
+                    (256): 4,
+                    (260): 4,
+                    (293): 4,
+                    (334): 4,
+                    (342): 4,
+                    (348): 4,
+                    (389): 4,
+                    (393): 4,
+                    (409): 8,
+                    (410): 6,
+                    (411): 4,
+                    (434): 4,
+                    (441): 10,
+                    (442): 8,
+                    (443): 6,
+                    (444): 4,
+                    (450): 4,
+                    (474): 12,
+                    (475): 10,
+                    (476): 8,
+                    (477): 6,
+                    (478): 4,
+                    (491): 4,
+                    (494): 4,
+                    (502): 4,
+                    (544): 6,
+                    (545): 4,
+                    (548): 4,
+                    (561): 6,
+                    (562): 4,
+                    (585): 4,
+                    (603): 4,
+                    (619): 6,
+                    (620): 4,
+                    (628): 4,
+                    (653): 4,
+                    (655): 4,
+                    (660): 4,
+                    (683): 8,
+                    (684): 6,
+                    (685): 4,
+                    (702): 6,
+                    (703): 4,
+                    (706): 4,
+                    (735): 8,
+                    (736): 6,
+                    (737): 4,
+                    (740): 4,
+                    (760): 6,
+                    (761): 4,
+                    (819): 4,
+                    (823): 4,
+                    (843): 4,
+                    (856): 6,
+                    (857): 4,
+                    (922): 6,
+                    (923): 4,
+                    (955): 4]
+
+
   ]
 }

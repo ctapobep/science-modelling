@@ -142,7 +142,38 @@ class Dna {
     return new Dna(null, result.toString())
   }
 
-  static char complementNucleotide(char nucleotide) {
+  Map<Integer, Integer> reversePalindromes() {
+    Map<Integer, Integer> result = [:]
+    for (int i = 0; i < sequence.length(); i++) {
+      int end = Math.min(i + 12, sequence.length() - 1)
+      int palindromeLength = 0
+
+      int start = i
+      while (start < end) {
+        //palindromes are always even. since i starts with 0, even and odd are mixed up
+        if ((end - start + 1) % 2 != 0) end--
+        char endChar = sequence.charAt(end)
+        char startChar = sequence.charAt(start)
+        if (startChar != complementNucleotide(endChar)) {
+          start = i
+          // one -1 is to return back to 0-based counting and another one is so that we don't return back the the
+          // {@code end} that was in this exact palindrome
+          if(palindromeLength) end = start + palindromeLength - 2
+          palindromeLength = 0
+        } else if (palindromeLength == 0) {
+          palindromeLength = end - start + 1//index begins with 0, so the length needs to be adjusted, ergo +1
+          start++
+        } else {
+          start++
+        }
+        end--
+      }
+      if (palindromeLength >= 4) result.put(i + 1, palindromeLength)
+    }
+    return result
+  }
+
+  private static char complementNucleotide(char nucleotide) {
     switch (nucleotide) {
       case ('A' as char): return 'T' as char
       case ('T' as char): return 'A' as char
