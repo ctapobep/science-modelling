@@ -2,6 +2,24 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class Dna {
+  final static Map<String, String> DNA_TO_PROTEIN = [
+      TTT: 'F', CTT: 'L', ATT: 'I', GTT: 'V',
+      TTC: 'F', CTC: 'L', ATC: 'I', GTC: 'V',
+      TTA: 'L', CTA: 'L', ATA: 'I', GTA: 'V',
+      TTG: 'L', CTG: 'L', ATG: 'M', GTG: 'V',
+      TCT: 'S', CCT: 'P', ACT: 'T', GCT: 'A',
+      TCC: 'S', CCC: 'P', ACC: 'T', GCC: 'A',
+      TCA: 'S', CCA: 'P', ACA: 'T', GCA: 'A',
+      TCG: 'S', CCG: 'P', ACG: 'T', GCG: 'A',
+      TAT: 'Y', CAT: 'H', AAT: 'N', GAT: 'D',
+      TAC: 'Y', CAC: 'H', AAC: 'N', GAC: 'D',
+      TAA: 'Stop', CAA: 'Q', AAA: 'K', GAA: 'E',
+      TAG: 'Stop', CAG: 'Q', AAG: 'K', GAG: 'E',
+      TGT: 'C', CGT: 'R', AGT: 'S', GGT: 'G',
+      TGC: 'C', CGC: 'R', AGC: 'S', GGC: 'G',
+      TGA: 'Stop', CGA: 'R', AGA: 'R', GGA: 'G',
+      TGG: 'W', CGG: 'R', AGG: 'R', GGG: 'G',
+  ]
   final String id
   final String sequence
 
@@ -58,10 +76,10 @@ class Dna {
     return sequence.charAt(symbolPosition)
   }
 
-  List<Integer> positionsOf(String subSequence) {
+  List<Integer> positionsOf(String subSequence, int startFrom = 0) {
     int subLength = subSequence.length()
     List<Integer> positions = new ArrayList<>();
-    for (int i = 0; i < sequence.length() - subLength + 1; i++) {
+    for (int i = startFrom; i < sequence.length() - subLength + 1; i++) {
       if (sequence.charAt(i) == subSequence.charAt(0)) {
         if (sequence[i..(i + subLength -1)] == subSequence) {
           positions.add(i + 1)
@@ -69,6 +87,61 @@ class Dna {
       }
     }
     return positions
+  }
+
+  List<String> possibleProteinsThatCanStartAnywhere() {
+    List<String> result = []
+    for (int startCodonPosition : positionsOf('ATG')) {
+      Dna dna = dna(sequence.substring(startCodonPosition - 1))
+      String protein = dna.resultingProtein()
+      if(protein) result.add(protein)
+    }
+    Dna complementary = this.complementaryDna()
+    for (int startCodonPosition : complementary.positionsOf('ATG')) {
+      Dna dna = dna(complementary.sequence.substring(startCodonPosition - 1))
+      String protein = dna.resultingProtein()
+      if(protein) result.add(protein)
+    }
+    return result.unique()
+  }
+
+  String resultingProtein() {
+    String aminoAcids = ''
+    boolean metStopCodon = false
+    for (int i = 0; i < sequence.length();) {
+      int codonEndIndex = i + 3
+      if (sequence.length() < codonEndIndex) return '' //it must stop with stop codon, if it's not - the protein is invalid
+      String codon = sequence.substring(i, codonEndIndex);
+
+      String aminoAcid = DNA_TO_PROTEIN[codon]
+      if (aminoAcid == 'Stop') {
+        metStopCodon = true
+        break
+      }
+      aminoAcids += aminoAcid
+      i += 3
+    }
+    if(!metStopCodon) return ''
+    return aminoAcids
+  }
+
+  Dna complementaryDna() {
+    StringBuilder result = new StringBuilder()
+    for (int i = sequence.length() - 1; i >= 0; i--) {
+      char nucleotide = sequence.charAt(i)
+      result.append(complementNucleotide(nucleotide))
+    }
+    return new Dna(null, result.toString())
+  }
+
+  static char complementNucleotide(char nucleotide) {
+    switch (nucleotide) {
+      case ('A' as char): return 'T' as char
+      case ('T' as char): return 'A' as char
+      case ('G' as char): return 'C' as char
+      case ('C' as char): return 'G' as char
+    }
+    throw new IllegalArgumentException("No such DNA nucleotide: ${nucleotide}")
   }
 
   static String longestCommonSequence(List<Dna> dnas) {
