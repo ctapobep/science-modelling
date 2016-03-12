@@ -1,4 +1,36 @@
 class Permutations {
+  static String longestIncreasingSeq(String permutation) {
+    String[] stringVector = permutation.split(' ')
+    int[] vector = stringVector.collect { it as int }
+    List<List<Integer>> increasingVectors = [[vector[0]]]
+
+    for (int i = 1; i < vector.length; i++) {
+      int next = vector[i]
+      List<List<Integer>> tailLessThanNext = increasingVectors.findAll { it.last() < next }
+      List<Integer> longest = tailLessThanNext.max { it.size() }
+      List<Integer> newLongest = new ArrayList<>(longest ? longest : [])
+      newLongest.add(next)
+      increasingVectors.add(newLongest)
+    }
+    return increasingVectors.max { it.size() }.join(' ')
+  }
+
+  static String longestDecreasingSeq(String permutation) {
+    String[] stringVector = permutation.split(' ')
+    int[] vector = stringVector.collect { it as int }
+    List<List<Integer>> increasingVectors = [[vector[0]]]
+
+    for (int i = 1; i < vector.length; i++) {
+      int next = vector[i]
+      List<List<Integer>> tailLessThanNext = increasingVectors.findAll { it.last() > next }
+      List<Integer> longest = tailLessThanNext.max { it.size() }
+      List<Integer> newLongest = new ArrayList<>(longest ? longest : [])
+      newLongest.add(next)
+      increasingVectors.add(newLongest)
+    }
+    return increasingVectors.max { it.size() }.join(' ')
+  }
+
   static List<String> permutations(String toPermutate) {
     if (!toPermutate) return []
     if (toPermutate.length() == 1) return [toPermutate]

@@ -33,7 +33,7 @@ class Protein {
 
   /**
    * Excludes water mass (18.01056 da) as for now
-   * @return a mass of the protein as if it conisted only of the principal isotopes and no others
+   * @return a mass of the protein as if it consisted only of the principal isotopes and no others
    */
   double monoisotopicMass() {
     double result = 0;
