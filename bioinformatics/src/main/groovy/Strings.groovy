@@ -6,4 +6,8 @@ class Strings {
     }
     return 0
   }
+  static String joinOverlap(String s1, String s2) {
+    int overlap = overlap(s1, s2, 1)
+    return s1 + s2.substring(overlap)
+  }
 }

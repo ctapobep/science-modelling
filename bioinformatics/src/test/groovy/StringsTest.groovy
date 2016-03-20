@@ -1,5 +1,6 @@
 import org.junit.Test
 
+import static Strings.joinOverlap
 import static Strings.overlap
 
 class StringsTest {
@@ -13,6 +14,10 @@ class StringsTest {
     assert 0 == overlap('B', 'AB')
     assert 0 == overlap(' BA ', 'BA')
 
-    assert 2 == overlap('ABA', 'BAC', )
+    assert 2 == overlap('ABA', 'BAC')
+  }
+
+  @Test void joinOverlapTest() {
+    assert 'ABAC' == joinOverlap('ABA', 'BAC')
   }
 }
