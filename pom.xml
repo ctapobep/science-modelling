@@ -13,6 +13,7 @@
     <module>statistics</module>
     <module>bioinformatics</module>
     <module>randomize-test-data</module>
+    <module>computer-science</module>
   </modules>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,20 +22,6 @@
   <build>
     <pluginManagement>
       <plugins>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.1</version>
-          <executions>
-            <execution>
-              <id>default-compile</id>
-              <phase>none</phase>
-            </execution>
-            <execution>
-              <id>default-testCompile</id>
-              <phase>none</phase>
-            </execution>
-          </executions>
-        </plugin>
         <plugin>
           <groupId>org.codehaus.gmavenplus</groupId>
           <artifactId>gmavenplus-plugin</artifactId>
