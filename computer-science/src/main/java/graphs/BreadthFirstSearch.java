@@ -26,13 +26,14 @@ public class BreadthFirstSearch {
 
     private void doBuild(int vertex) {
         marked[vertex] = true;
-        for (int nextAdj : graph.adj(vertex)) {
-            marked[nextAdj] = true;
-            path[nextAdj] = vertex;
-            for(int neighbour: graph.adj(nextAdj)) {
+        toVisit.add(vertex);
+        while (!toVisit.isEmpty()) {
+            int v = toVisit.poll();
+            for(int neighbour: graph.adj(v)) {
                 if (!marked[neighbour]) {
                     marked[neighbour] = true;
-                    path[neighbour] = nextAdj;
+                    path[neighbour] = v;
+                    toVisit.add(neighbour);
                 }
             }
         }
