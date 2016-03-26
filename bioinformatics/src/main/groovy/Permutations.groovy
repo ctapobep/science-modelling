@@ -31,6 +31,18 @@ class Permutations {
     return increasingVectors.max { it.size() }.join(' ')
   }
 
+  static List<String> signPermutations(String[] elements) {
+    for (int i = 0; i < 2**elements.length; i++) {
+      String row = ''
+      for (int j = 0; j < elements.length; j++) {
+        String element = elements[j]
+        element = (i & j**2) == 0 ? element : "-${element}"
+        row += element
+      }
+      println row
+    }
+  }
+
   static List<String> permutations(String toPermutate) {
     if (!toPermutate) return []
     if (toPermutate.length() == 1) return [toPermutate]
